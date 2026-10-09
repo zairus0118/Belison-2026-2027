@@ -1,39 +1,20 @@
-import { useState } from "react";
 import { Outlet, useNavigate } from "react-router";
-import PopupLogin from "./components/popups/PopupLogin";
 
 export default function App() {
   const nav = useNavigate();
 
-  const [isLoginVisible, setLoginVisible] = useState(false);
-
   return (
     <main className="bg-slate-950 text-white min-h-screen">
-      {/* Header Navigation */}
-      {isLoginVisible && (
-        <PopupLogin
-          isLoginVisible={isLoginVisible}
-          setLoginVisible={setLoginVisible}
-        />
-      )}
-
-      <header className="bg-slate-800 flex justify-between border-b">
-        <h1>APP Routing</h1>
+      <header className="bg-slate-800 flex justify-between items-center px-6 py-4 border-b border-slate-700">
+        <h1 className="text-xl font-bold">My Portfolio</h1>
 
         <nav className="flex gap-3">
-          {/* <button onClick={() => nav('/')}>Login</button> */}
-          <button onClick={() => setLoginVisible(true)}>Login</button>
-          <button onClick={() => nav("/dashboard")}>Dashboard</button>
-          <button onClick={() => nav("/dashboard/profile/1")}>Frieren</button>
-          <button onClick={() => nav("/dashboard/profile/2")}>Fern</button>
-          <button onClick={() => nav("/dashboard/profile/3")}>Stark</button>
+          <button className="px-3 py-1 rounded hover:bg-slate-700" onClick={() => nav("/")}>About Me</button>
+          <button className="px-3 py-1 rounded hover:bg-slate-700" onClick={() => nav("/hobby/1")}>Online Games</button>
+          <button className="px-3 py-1 rounded hover:bg-slate-700" onClick={() => nav("/hobby/2")}>Jogging</button>
+          <button className="px-3 py-1 rounded hover:bg-slate-700" onClick={() => nav("/hobby/3")}>Basketball</button>
         </nav>
       </header>
-
-      {/* 
-      URL: localhost:5173/dashboard/
-      Outlet Component == 
-      */}
 
       <Outlet />
     </main>
