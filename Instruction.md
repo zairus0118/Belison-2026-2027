@@ -32,7 +32,7 @@ Create a **React project about a Pokédex** that connects to your **Django proje
 2. Connect the two projects via API. Do not hard-code Pokémon data in React; every create, read, update and delete must go through the API.
 3. Use the routing, hooks, state handling and API practices we used in class.
 4. Make sure both projects run without errors before you submit.
-5. Work on your own. Submit your work as directed by your instructor.
+
 
 ## Grading Rubric (100 pts)
 

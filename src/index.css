@@ -1,111 +1,105 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --red: #c8283a;
+  --red-dark: #8f1a28;
+  --ink: #1d2230;
+  --paper: #f3f4f7;
+  --panel: #ffffff;
+  --line: #dde0e8;
+  --muted: #667085;
+  --ok: #1f7a4d;
+  --radius: 10px;
+  color-scheme: light;
 }
-
 @media (prefers-color-scheme: dark) {
   :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+    --red: #e04757;
+    --red-dark: #b3202f;
+    --ink: #eceef4;
+    --paper: #12151d;
+    --panel: #1b1f2a;
+    --line: #2d3342;
+    --muted: #98a2b3;
+    --ok: #4cc38a;
+    color-scheme: dark;
   }
 }
-
+* { box-sizing: border-box; }
 body {
   margin: 0;
+  font-family: "Nunito", system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.5;
 }
+h1, h2, h3 { font-family: "Chakra Petch", system-ui, sans-serif; margin: 0; }
+a { color: var(--red); }
+:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.25rem;
 }
+label { display: flex; flex-direction: column; gap: .3rem; font-weight: 600; font-size: .9rem; flex: 1; }
+input, select, textarea {
+  font: inherit;
+  padding: .55rem .7rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink);
+}
+.row { display: flex; gap: .75rem; }
+.muted { color: var(--muted); margin: 0; }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
+.btn { font: inherit; font-weight: 700; padding: .55rem 1rem; border-radius: 6px; border: 1px solid transparent; cursor: pointer; }
+.btn:disabled { opacity: .55; cursor: not-allowed; }
+.btn-primary { background: var(--red); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--red-dark); }
+.btn-ghost { background: transparent; border-color: var(--line); color: var(--ink); }
+.btn-danger { background: transparent; border-color: var(--red); color: var(--red); }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
+.msg { margin: 0; padding: .6rem .8rem; border-radius: 6px; font-size: .9rem; }
+.msg-error { background: color-mix(in srgb, var(--red) 14%, transparent); color: var(--red); }
+.msg-ok { background: color-mix(in srgb, var(--ok) 16%, transparent); color: var(--ok); }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
+.auth-page { min-height: 100vh; display: grid; place-items: center; padding: 1rem; }
+.auth-form { width: 100%; max-width: 380px; display: flex; flex-direction: column; gap: .9rem; border-top: 6px solid var(--red); }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.topbar { display: flex; justify-content: space-between; align-items: center; padding: .9rem 1.5rem; background: var(--red); color: #fff; }
+.topbar-user { display: flex; align-items: center; gap: .75rem; }
+.topbar .btn-ghost { color: #fff; border-color: rgba(255,255,255,.6); }
+.gallery-layout { display: grid; grid-template-columns: 320px 1fr; gap: 1.5rem; max-width: 1150px; margin: 1.5rem auto; padding: 0 1rem; align-items: start; }
+.form-pokemon { display: flex; flex-direction: column; gap: .8rem; position: sticky; top: 1rem; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1rem; }
+.empty { padding: 2rem; text-align: center; color: var(--muted); border: 2px dashed var(--line); border-radius: var(--radius); }
+
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+.card-img { aspect-ratio: 1; background: var(--paper); display: grid; place-items: center; border-bottom: 1px solid var(--line); }
+.card-img img { width: 100%; height: 100%; object-fit: contain; }
+.card-noimg { font: 700 3rem "Chakra Petch", sans-serif; color: var(--line); }
+.card-body { padding: .9rem; display: flex; flex-direction: column; gap: .5rem; flex: 1; }
+.card-desc { margin: 0; font-size: .85rem; color: var(--muted); }
+.card-actions { display: flex; gap: .5rem; padding: 0 .9rem .9rem; }
+.card-actions .btn { flex: 1; padding: .4rem; }
+.stats { display: flex; gap: 1.25rem; margin: 0; }
+.stats div { display: flex; flex-direction: column; }
+.stats dt { font-size: .75rem; color: var(--muted); }
+.stats dd { margin: 0; font: 700 1.1rem "Chakra Petch", sans-serif; }
+
+.type { align-self: flex-start; padding: .1rem .6rem; border-radius: 999px; font-size: .78rem; font-weight: 700; color: #fff; background: #6b7280; }
+.type-fire { background: #e2531f; } .type-water { background: #2f7fd6; }
+.type-grass { background: #3d9a45; } .type-electric { background: #c79a00; }
+.type-psychic { background: #d6467f; } .type-ice { background: #3aa7b5; }
+.type-fighting { background: #b2392f; } .type-poison { background: #8a46b0; }
+.type-ground { background: #9a7b3a; } .type-flying { background: #6f83d6; }
+.type-bug { background: #7a9a1f; } .type-rock { background: #8a7d55; }
+.type-ghost { background: #5b4b94; } .type-dragon { background: #4a52c9; }
+.type-dark { background: #4a4048; } .type-steel { background: #5d7a8c; }
+.type-fairy { background: #c667b0; }
+
+@media (max-width: 800px) {
+  .gallery-layout { grid-template-columns: 1fr; }
+  .form-pokemon { position: static; }
 }
